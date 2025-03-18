@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    container_name: weather_app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/weather_db
+    volumes:
+      - ./:app
+    networks:
+      - weather_network
+
+  db:
+    image: postgres:17
+    container_name: weather_db
+    restart: always
+    environment:
+      - POSTGRES_USER= user
+      - POSTGRES_PASSWORD= password
+      - POSTGRES_DB = weather_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - weather_network
+
+  volumes:
+    pg_data:
+
+  networks:
+    weather_network

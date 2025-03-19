@@ -1,1 +1,13 @@
 .env
+.env*
+
+*.logs
+docker-compose.override.yml
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+pg_data/
+db.sqlite3

@@ -5,7 +5,7 @@ from datetime import datetime
 #Modelo de la tabla de datos
 class WeatherData(Base):
     #Nombre de la base de datos
-    __tablename__ = "Weather_app"
+    __tablename__ = "weather_app"
 
     #Propiedades
     id = Column(Integer, primary_key=True, index=True)

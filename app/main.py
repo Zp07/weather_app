@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.routes import router as weather_router
-from app.routes import Base, engine
+from app.database import Base, engine
 
 #Instancia de FastAPI con titulo y versión
 app = FastAPI(title="Weather app",version="1.0")

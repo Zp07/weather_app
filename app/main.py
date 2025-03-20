@@ -3,7 +3,7 @@ from app.routes import router as weather_router
 from app.database import Base, engine
 
 #Instancia de FastAPI con titulo y versión
-app = FastAPI(title="Weather app",version="1.0")
+app = FastAPI(title="Skynow",version="1.0")
 
 #Incluir rutas de la API
 app.include_router(weather_router)
@@ -13,5 +13,5 @@ Base.metadata.create_all(bind=engine)
 
 @app.get("/")
 def root():
-    return {"message": "API funcionando correctamente"}
+    return {"message": "API funcionando...Skynow up"}
 

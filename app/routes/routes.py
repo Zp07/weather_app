@@ -7,17 +7,18 @@ from app.services.weather_api import get_weather_city
 
 router = APIRouter()
 
-#Ruta para traer todos los registros
-@router.get("/weather/", response_model=list[WeatherResponse])
-def get_all_weather(db: Session = Depends(get_db)):
-    return db.query(WeatherData).all()
-
-#Ruta obtener datos del clima en tiempo real 
-@router.get("/weather/{city}")
-def get_weather_api(city: str):
+#Obtener datos del clima en tiempo real y almacenarlo en BD 
+@router.get("/weather/{city}", response_model=WeatherResponse)
+def get_weather_api(city: str, db: Session = Depends(get_db)):
     weather_data = get_weather_city(city)
-    if weather_data:
-        return weather_data
-    else:
+
+    if not weather_data:
         raise HTTPException(status_code=404, detail="City not found")
+    
+    new_entry = WeatherData(**weather_data)
+    db.add(new_entry)
+    db.commit()
+    db.refresh(new_entry)
+
+    return new_entry
     

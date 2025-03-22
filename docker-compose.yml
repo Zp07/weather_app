@@ -19,7 +19,11 @@ services:
   
   api:
     build: .
+<<<<<<< HEAD
     container_name: skynow
+=======
+    container_name: Skynow
+>>>>>>> develop
     restart: always
     depends_on:
       - db

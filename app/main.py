@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from app.routes import router as weather_router
-from app.database import Base, engine
+from app.routes.routes import router as weather_router
+from app.core.database import Base, engine
 
 #Instancia de FastAPI con titulo y versión
 app = FastAPI(title="Skynow",version="1.0")
